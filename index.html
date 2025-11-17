@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Duta — Profil & Portofolio</title>
+<style>
+.exp-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.exp-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--glass-2);
+}
+
+.exp-item:last-child {
+  border-bottom: none;
+}
+
+.exp-item h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.exp-desc {
+  font-size: 13px;
+  color: var(--glass-2);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+
+  /* Reset & fonts */
+  :root{
+    --bg:#071225; --card:#0d1724; --muted:#9fb3c8;
+    --accent:#ff6b6b; --accent-2:#ffd166; --glass:rgba(255,255,255,0.04);
+    --glass-2:rgba(255,255,255,0.02);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: radial-gradient(800px 400px at 10% 10%, rgba(255,107,107,0.04), transparent),
+                radial-gradient(600px 300px at 90% 90%, rgba(255,209,102,0.02), transparent),
+                var(--bg);
+    color:#e7f2fb;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.4;
+    padding:28px;
+  }
+
+  /* Layout */
+  .wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:22px}
+  @media (max-width:960px){ .wrap{grid-template-columns:1fr; padding:8px} }
+
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;padding:24px;border:1px solid var(--glass-2);
+    box-shadow:0 10px 30px rgba(2,6,23,0.6); position:relative; overflow:hidden;
+    backdrop-filter: blur(6px) saturate(110%);
+  }
+
+  /* Hero */
+  .hero h1{font-size:clamp(26px,4vw,40px);margin-bottom:6px}
+  .title{color:var(--accent-2);font-weight:700;margin-bottom:12px}
+  .lead{color:var(--muted);margin-bottom:18px;max-width:70%}
+  .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+  .btn{
+    border:0;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn.primary{background:linear-gradient(90deg,var(--accent),#ff8a8a);color:#200a08;box-shadow:0 10px 30px rgba(255,107,107,0.12)}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+  .btn:active{transform:translateY(1px)}
+  .btn.primary:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(255,107,107,0.12)}
+
+  /* badges / chips */
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .chip{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid var(--glass-2)}
+
+  /* sections */
+  section h3{margin-bottom:10px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media (max-width:600px){ .grid-2{grid-template-columns:1fr} }
+
+  /* skill list */
+  .skills{display:flex;gap:8px;flex-wrap:wrap}
+  .skill{padding:8px 10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid var(--glass);font-weight:600;color:#dbeef0}
+
+  /* project card */
+  .project{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid var(--glass-2)}
+  .project h4{margin-bottom:6px}
+  .muted{color:var(--muted);font-size:14px}
+
+  /* right column */
+  .profile-brief{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+  .avatar{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:900;color:#240a03;font-size:22px;box-shadow:0 8px 26px rgba(0,0,0,0.5)}
+  .contact{font-size:14px;color:var(--muted)}
+  .stat-row{display:flex;gap:12px;justify-content:space-between;margin-top:10px}
+  .stat{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;flex:1;border:1px solid var(--glass-2)}
+  .stat b{display:block;font-size:18px}
+
+  /* achievements */
+  .achieve{display:flex;flex-direction:column;gap:8px}
+  .achieve .item{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border:1px solid var(--glass-2)}
+
+  /* footer */
+  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+  /* small decorative floating orbs */
+  .orb{position:absolute;border-radius:50%;filter:blur(36px);opacity:0.16;pointer-events:none}
+  .orb.a{width:260px;height:260px;right:-100px;top:-80px;background:linear-gradient(45deg,var(--accent),#ff9a9a)}
+  .orb.b{width:160px;height:160px;left:-60px;bottom:-60px;background:linear-gradient(45deg,var(--accent-2),#fff1c2)}
+
+  /* micro interactions */
+  .project .meta{display:flex;gap:8px;margin-top:8px}
+  .tag{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:13px;color:var(--muted)}
+  .copy{font-size:13px;color:var(--muted);cursor:pointer;border-bottom:1px dashed rgba(255,255,255,0.04)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- main column -->
+    <main class="card">
+      <div class="orb a"></div>
+      <h1> Duta Adithya Dewa</h1>
+      <div class="title">Electrical Engineering • IoT Engineer • 3D Engineer • Embedded Developer</div>
+      <p class="lead">Seseorang yang menekuni bidang electrical, desain mekanis, dan otomasi sejak usia 7 Tahun</p>
+
+      <div class="cta-row">
+        <button class="btn primary" onclick="contactMe()">Hubungi / Ajak Kolab</button>
+        <button class="btn ghost" onclick="downloadResume()">Download CV (kosong)</button>
+        <div class="chip">Lokasi: Jakarta</div>
+      </div>
+
+      <div class="chips" style="margin-top:18px">
+        <div class="chip">Fusion 360</div>
+        <div class="chip">IoT</div>
+        <div class="chip">Electrical</div>
+      </div>
+
+      <hr style="margin:18px 0;border-color:var(--glass-2)">
+
+      <section>
+        <h3>Proyek Pilihan</h3>
+        <div class="grid-2">
+          <div class="project">
+            <h4>Smart Feeder - IoT Automated Feeder</h4>
+            <div class="muted">Sistem pemberi pakan otomatis menggunakan ESP32, RTC, dan s untuk jadwal & monitoring.</div>
+            <div class="meta">
+              <div class="tag">IoT</div><div class="tag">ESP32</div>
+            </div>
+          </div>
+
+          <div class="project">
+            <h4>Sumo Robot - Kompetisi Sumo Skala Nasional</h4>
+            <div class="muted">Robot sumo kelas kompetitif, kontrol motor brushed, gerak presisi, dan strategi tabrak cepat.</div>
+            <div class="meta">
+              <div class="tag">Embedded</div><div class="tag">Motor Control</div>
+            </div>
+          </div>
+
+          <div class="project">
+            <h4>Transporter Robot - Kompetisi Transporter Skala Nasional</h4>
+            <div class="muted">Prototipe transporter yang dikombinasikan desain Fusion 360 dan komponen elektronik custom.</div>
+            <div class="meta">
+              <div class="tag">Fusion 360</div><div class="tag">3D Print</div><div class="tag">Electrical Troubleshooting</div>
+            </div>
+          </div>
+
+          <div class="project">
+            <h4>Workshop IoT</h4>
+            <div class="muted">Seri demo praktik: sensor-to-cloud, dashboard monitoring, dan integrasi Blynk/MQTT untuk pelatihan.</div>
+            <div class="meta">
+              <div class="tag">Training</div><div class="tag">MQTT</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr style="margin:18px 0;border-color:var(--glass-2)">
+
+      <section>
+        <h3>Keahlian</h3>
+        <div class="skills" style="margin-top:8px">
+          <div class="skill">Fusion 360</div>
+          <div class="skill">IoT Development</div>
+          <div class="skill">Embedded Systems</div>
+          <div class="skill">Prototyping</div>
+          <div class="skill">3D Printing</div>
+          <div class="skill">Electrical Troubleshooting</div>
+        </div>
+      </section>
+
+      <hr style="margin:18px 0;border-color:var(--glass-2)">
+
+      <section>
+  <h3>Pengalaman</h3>
+
+  <div class="exp-list">
+    
+    <div class="exp-item">
+      <h4>Tim Riset / Peneliti</h4>
+      <p class="muted">Laboratorium Bengkel Elektromekanik, IPB University</p>
+      <p class="exp-desc">
+        Riset perangkat IoT, sistem mekanik, dan pengembangan modul elektromekanik.
+      </p>
+    </div>
+
+    <div class="exp-item">
+      <h4>Chief Engineer</h4>
+      <p class="muted">Vocational Robotic Club</p>
+      <p class="exp-desc">
+        Mimpin divisi engineering untuk robotika, kompetisi, dan perangkat embedded.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+    </main>
+
+    <!-- right column -->
+    <aside class="card">
+      <div class="profile-brief">
+        <div class="avatar">D</div>
+        <div>
+          <div style="font-weight:800">Duta</div>
+          <div class="contact">teknisi • IoT / Embedded</div>
+          <div style="height:6px"></div>
+          <div class="muted" style="font-size:13px">Siap kolaborasi, prototyping, dan kompetisi.</div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Prestasi</h3>
+        <div class="achieve" style="margin-top:8px">
+          <div class="item"><strong>Juara 1</strong> — Lomba Pidato SMAS AL-HUDA, Jakarta Barat</div>
+          <div class="item"><strong>Juara 2</strong> — Robotic Sumo Competition UPNVJ, Jakarta Pusat</div>
+          <div class="item"><strong>Juara 3</strong> — Robotic Transporter IPB University, Bogor</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <h3>Statistik Singkat</h3>
+        <div class="stat-row">
+          <div class="stat"><b>5+</b><div class="muted">Proyek</div></div>
+          <div class="stat"><b>3</b><div class="muted">Prestasi</div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <h3>Kontak</h3>
+        <div class="muted" style="margin-bottom:8px">Belum ada link sosial? Tulis email atau nomor di sini nanti.</div>
+        <div style="display:flex;gap:8px">
+          <input id="email" placeholder="email@example.com" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:inherit">
+          <button class="btn ghost" onclick="saveEmail()">Simpan</button>
+        </div>
+        <div style="margin-top:10px;font-size:13px;color:var(--muted)"><span id="savedEmail"></span></div>
+      </div>
+
+      <div style="margin-top:16px">
+        <h3>Tautan</h3>
+        <div class="muted">Tidak ada link yang diberikan. Jika ingin, tambahkan GitHub / LinkedIn / Instagram nanti.</div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <small>Portfolio ini dibuat cepat — edit teks / proyek sesuai kenyataan. Format satu file, mudah dihosting statis.</small>
+  </footer>
+
+<script>
+  // Simple interactions
+  function contactMe(){
+    const mail = document.getElementById('email').value || '';
+    const subject = encodeURIComponent('Kolaborasi/Proyek — Duta');
+    const body = encodeURIComponent('Halo Duta,%0A%0ASaya tertarik berkolaborasi...%0A');
+    if(mail.includes('@')) {
+      alert('Email tersimpan. Tombol "Download CV" kosong, gunakan fungsi kontak.');
+      // example: open mailto to prefill
+      window.location.href = `mailto:${mail}?subject=${subject}&body=${body}`;
+    } else {
+      alert('Masukkan emailmu di kanan untuk menggunakan mailto.');
+    }
+  }
+
+  function downloadResume(){
+    // placeholder: generate basic resume file
+    const name = 'Duta — CV';
+    const content = [
+      'Nama: Duta Adithya Dewa',
+      'Title: Electrical Engineering, IoT Engineering, 3D Engineering, Embedded Developer',
+      '',
+      'Deskripsi:',
+      'Seseorang yang menekuni bidang mekanisasi, automasi dan electrical sejak saat SD.',
+      '',
+      'Keahlian: Fusion 360, IoT Development, Electrical Troubleshooting',
+      '',
+      'Prestasi:',
+      '- Juara 1 Lomba Pidato SMAS AL-HUDA, Jakarta Barat',
+      '- Juara 2 Robotic Sumo Competition UPNVJ, Jakarta Pusat',
+      '- Juara 3 Robotic Transporter IPB University, Bogor'
+    ].join('\\n');
+    const blob = new Blob([content], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name + '.txt';
+    a.click();
+  }
+
+  function saveEmail(){
+    const v = document.getElementById('email').value;
+    if(!v || !v.includes('@')) { alert('Masukkan email valid.'); return; }
+    document.getElementById('savedEmail').textContent = 'Email tersimpan: ' + v;
+    localStorage.setItem('duta_email', v);
+  }
+
+  // load saved email if any
+  (function(){ const e=localStorage.getItem('duta_email'); if(e){ document.getElementById('email').value = e; document.getElementById('savedEmail').textContent = 'Email tersimpan: ' + e; } })();
+</script>
+</body>
+</html>
